@@ -1,0 +1,28 @@
+{% extends "index.html" %} {% block detail %}With Role Read, you can only can
+only read the notes without delete or update it{% endblock %} {% block content
+%}
+<h1 style="text-align: center">List Notes</h1>
+{% if notes|length < 1 %}
+<h4 style="text-align: center">There are no notes. Create one below!</h4>
+{% else %}
+<div class="table100">
+  <table>
+    <thead>
+      <tr class="table100-head">
+        <th class="column1">Notes</th>
+        <th class="column2">Date Created</th>
+        <th class="column3">Create by</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for note in notes %}
+      <tr>
+        <td class="column1">{{ note.content }}</td>
+        <td class="column2">{{ note.date }}</td>
+        <td class="column3">{{ note.user_name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %} {% endblock %}

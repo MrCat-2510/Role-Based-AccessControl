@@ -1,0 +1,89 @@
+{% extends "index.html" %} {% block detail %}With Admin, you can edit notes and
+accounts. However, you cannot delete Admin accounts{% endblock %} {% block
+content %}
+<br />
+<h1 style="text-align: center">List Notes</h1>
+<div class="form">
+  <form method="POST">
+    <input
+      type="text"
+      name="content"
+      id="content"
+      placeholder="Input your notes"
+    />
+    <input type="submit" value="Add Note" />
+  </form>
+</div>
+{% if notes|length < 1 %}
+<h4 style="text-align: center">There are no notes. Create one below!</h4>
+{% else %}
+<div class="table100">
+  <table>
+    <thead>
+      <tr class="table100-head">
+        <th class="column1">Notes</th>
+        <th class="column2">Date Created</th>
+        <th class="column3">Create by</th>
+        <th class="column4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for note in notes %}
+      <tr>
+        <td class="column1">{{ note.content }}</td>
+        <td class="column2">{{ note.date }}</td>
+        <td class="column3">{{ note.user_name }}</td>
+        <td class="column4">
+          <a
+            onClick="Confirm()"
+            href="{{ url_for('views.delete', note_id = note.id )}}"
+            >Delete</a
+          >
+          <br />
+          <a href="{{ url_for('views.update', note_id = note.id )}}">Update</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+<h1 style="text-align: center">User accounts:</h1>
+<div class="table100">
+  <table>
+    <thead>
+      <tr class="table100-head">
+        <th class="column1">ID</th>
+        <th class="column2">Username</th>
+        <th class="column3">Password</th>
+        <th class="column4">Date Created</th>
+        <th class="column5">Role</th>
+        <th class="column6">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for account in accounts %}
+      <tr>
+        <td class="column1">{{ account.id }}</td>
+        <td class="column2">{{ account.username }}</td>
+        <td class="column3">{{ account.password }}</td>
+        <td class="column4">{{ account.date }}</td>
+        <td class="column5">{{ account.role[0].name }}</td>
+        <td class="column6">
+          <a
+            onClick="Confirm()"
+            href="{{ url_for('views.delete_account', account_id = account.id )}}"
+            >Delete</a
+          >
+          <br />
+          <a
+            href="{{ url_for('views.update_account', account_id = account.id )}}"
+            >Update</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

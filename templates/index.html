@@ -1,0 +1,105 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <title>Security Access Control</title>
+    <!-- <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+      type="text/css"
+      media="all"
+    /> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--===============================================================================================-->
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/icons/favicon.ico') }}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='vendor/animate/animate.css') }}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.css') }}"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/util.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/main_table.css') }}"
+    />
+    <!--===============================================================================================-->
+  </head>
+  <body>
+    <div class="limiter">
+      <div class="container-table100">
+        <div class="container-login100-form-btn">
+          <h1>Welcome {{user.username}}</h1>
+          <p>Your role is: {{user.role[0].name}}</p>
+          <p>Your password is: {{user.password}}</p>
+          <p>{% block detail %}{% endblock %}</p>
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn">
+              <a href="{{ url_for('views.logout')}}">
+                <p>LOGOUT</p>
+              </a>
+            </button>
+          </div>
+        </div>
+        <div class="wrap-table100">{% block content %} {% endblock %}</div>
+        <br />
+
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <p>{{ message }}</p>
+
+        {% endfor %}{% endif %} {% endwith %}
+      </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+  <script>
+    function Confirm() {
+      confirm("Are you sure to delete it!");
+    }
+  </script>
+</html>
